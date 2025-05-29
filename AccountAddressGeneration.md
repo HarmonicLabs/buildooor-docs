@@ -37,7 +37,7 @@ Mnemonic phrases (or seed phrases) are used to generate the root private key fro
  * Generates a new mnemonic phrase with 256 bits of entropy.
  * @returns {string | object} The generated mnemonic phrase, or an error object if generation fails.
  */
-export function genSeedPhrase(): string | object {
+ function genSeedPhrase(): string | object {
   try {
     const mnemonic = generateMnemonic(256);
     return mnemonic;
@@ -56,7 +56,7 @@ export function genSeedPhrase(): string | object {
  * @param {string} seed - The mnemonic phrase to validate.
  * @returns {boolean | object} True if valid, false if invalid, or an error object if an exception occurs.
  */
-export function validateSeedPhrase(seed: string): boolean | object {
+ function validateSeedPhrase(seed: string): boolean | object {
   try {
     const isValid = validateMnemonic(seed);
     return isValid;
@@ -76,7 +76,7 @@ export function validateSeedPhrase(seed: string): boolean | object {
  * @returns {string} The entropy as a hexadecimal string.
  * @throws {Error} If the mnemonic is invalid.
  */
-export function seedPhraseToEntropy(seed_phrase: string): string {
+ function seedPhraseToEntropy(seed_phrase: string): string {
   return mnemonicToEntropy(seed_phrase);
 }
 ```
@@ -93,7 +93,7 @@ From the mnemonic phrase, you can generate the root private key and then derive 
  * @param {string} entropy - The entropy as a hexadecimal string.
  * @returns {XPrv | string} The root private key if successful, or 'root key error' if an error occurs.
  */
-export function genRootPrivateKey(entropy: string): XPrv | string {
+ function genRootPrivateKey(entropy: string): XPrv | string {
   try {
     const xprv_root = XPrv.fromEntropy(entropy, '');
     return xprv_root;
@@ -109,11 +109,12 @@ export function genRootPrivateKey(entropy: string): XPrv | string {
 ```typescript
 /**
  * Generates the account private key from the root private key and account index.
+ * This key is used to generate addresses at specified indexes.
  * @param {XPrv} rootKey - The root private key.
  * @param {number} index - The account index.
  * @returns {XPrv} The derived account private key.
  */
-export function genAccountPrivatekey(rootKey: XPrv, index: number): XPrv {
+ function genAccountPrivatekey(rootKey: XPrv, index: number): XPrv {
   const accountKey = rootKey
     .derive(harden(1852)) // purpose
     .derive(harden(1815)) // coin type
@@ -127,13 +128,14 @@ export function genAccountPrivatekey(rootKey: XPrv, index: number): XPrv {
 ```typescript
 /**
  * Generates the address private key from the root private key, account index, address type, and address index.
+ * This is the key you will need to sign your transaction with when spending its UTXOs
  * @param {XPrv} xprv_root - The root private key.
  * @param {number} accIndex - The account index.
  * @param {number} addressType - The address type (e.g., 0 for external, 1 for change).
  * @param {number} addressIndex - The address index.
  * @returns {XPrv} The derived address private key.
  */
-export function genAddressPrv(xprv_root: XPrv, accIndex: number, addressType: number, addressIndex: number): XPrv {
+ function genAddressPrv(xprv_root: XPrv, accIndex: number, addressType: number, addressIndex: number): XPrv {
   return xprv_root
     .derive(harden(1852))
     .derive(harden(1815))
@@ -153,7 +155,7 @@ export function genAddressPrv(xprv_root: XPrv, accIndex: number, addressType: nu
  * @param {number} index - The address index.
  * @returns {XPrv} The derived spending private key.
  */
-export function genAddressPrivateKey(accountKey: XPrv, index: number): XPrv {
+ function genAddressPrivateKey(accountKey: XPrv, index: number): XPrv {
   const spendingKey = accountKey
     .derive(0) // external
     .derive(index);
@@ -171,7 +173,7 @@ export function genAddressPrivateKey(accountKey: XPrv, index: number): XPrv {
  * @param {number} index - The stake index.
  * @returns {XPrv} The derived stake private key.
  */
-export function genAddressStakeKey(accountKey: XPrv, index: number): XPrv {
+ function genAddressStakeKey(accountKey: XPrv, index: number): XPrv {
   const stakeKey = accountKey
     .derive(2) // stake key
     .derive(index);
@@ -194,7 +196,7 @@ You can generate base and stake addresses directly from entropy or from derived 
  * @param {number} addressIndex - The address index.
  * @returns {Address} The generated base address.
  */
-export function genBaseAddressFromEntropy(entropy: string, network: NetworkT, accountIndex: number, addressIndex: number): Address {
+ function genBaseAddressFromEntropy(entropy: string, network: NetworkT, accountIndex: number, addressIndex: number): Address {
   const addressFromEntropy = Address.fromEntropy(entropy, network, accountIndex, addressIndex);
   const baseAddress = new Address({
     network,
@@ -217,7 +219,7 @@ export function genBaseAddressFromEntropy(entropy: string, network: NetworkT, ac
  * @param {number} addressIndex - The stake index.
  * @returns {StakeAddress} The generated stake address.
  */
-export function genStakeAddressFromEntropy(entropy: string, network: NetworkT, accountIndex: number, addressIndex: number): StakeAddress {
+ function genStakeAddressFromEntropy(entropy: string, network: NetworkT, accountIndex: number, addressIndex: number): StakeAddress {
   const addressFromEntropy = Address.fromEntropy(entropy, network, accountIndex, addressIndex);
   const stakeAddress = new StakeAddress({
     network,
