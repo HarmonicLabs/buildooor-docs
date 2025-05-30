@@ -1,0 +1,18 @@
+---
+title: referenceUtxos
+sidebar_position: 18
+---
+
+# `referenceUtxos`
+
+```ts
+readonly referenceUtxos!:( utxos: CanResolveToUTxO[] ) => TxBuilderRunner
+```
+
+adds the `utxos` to the [`refInputs`](../cardano-ledger-ts/classes/TxBody#refinputs)
+field of the resulting [`Tx`](../cardano-ledger-ts/classes/Tx)
+
+the elements of the array that don't satisfy the [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) interface
+will be resolved using the provider [`resolveUtxos`](./IProvider#iresolveutxos) method.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

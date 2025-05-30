@@ -1,0 +1,13 @@
+# `CanResolveToUTxO`
+
+
+## type definition
+
+```ts
+type CanResolveToUTxO = IUTxO | ITxOutRef | TxOutRefStr;
+```
+
+either: 
+- [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) (or also [`UTxO`](../cardano-ledger-ts/classes/UTxO))
+- [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) (or also [`TxOutRef`](../cardano-ledger-ts/classes/TxOutRef))
+- [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr)

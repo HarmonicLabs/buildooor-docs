@@ -1,0 +1,8 @@
+{
+  "label": "miscellaneous",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "other definitions present in plu-ts-offchain"
+  }
+}

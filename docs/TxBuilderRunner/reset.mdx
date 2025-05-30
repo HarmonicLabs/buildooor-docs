@@ -1,0 +1,16 @@
+---
+title: reset
+sidebar_position: 3
+---
+
+# `reset`
+
+```ts
+readonly reset: () => TxBuilderRunner
+```
+
+clears the [`TxBuilderRunner`](./TxBuilderRunner) instance,
+so that it can be re-used for other transactions,
+making sure no other action where specified
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

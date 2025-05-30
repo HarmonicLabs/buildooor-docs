@@ -1,0 +1,31 @@
+---
+title: delegateTo
+sidebar_position: 15
+---
+
+# `delegateTo`
+
+```ts
+readonly delegateTo!:(
+    delegator: CanBeStakeCreds,
+    poolId: CanBePoolKeyHash,
+    redeemer?: CanBeData,
+    script_or_ref?: Script | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `delegator`: [`CanBeStakeCreds`](../miscellaneous/CanBeStakeCreds)
+- `poolId`: [`CanBePoolKeyHash`](../miscellaneous/CanBePoolKeyHash)
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined`,
+- `script_or_ref`: [`Script`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined`
+
+adds a delegation certificate,
+
+`redeemer` and `script_or_ref` must be specified together;
+they are required if `delegator` is a script.
+
+if `script_or_ref` is [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) it will be used as reference script;
+
+if `script_or_ref` is [`Script`](../cardano-ledger-ts/classes/Script) it will be used as script witness;
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

@@ -1,0 +1,36 @@
+---
+title: runWithProvider
+sidebar_position: 2
+---
+
+# `runWithProvider`
+
+## method definition
+```ts
+runWithProvider( provider: Partial<ITxRunnerProvider> ): TxBuilderRunner
+```
+
+given a `Partial`\<[`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider)\>
+returns a [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner)
+
+## The empty provider
+
+`Partial` implies that none of the methods specified in 
+[`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider) are really required.
+
+a [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner) instance will do its best to minimize calls to the provider;
+that means that if all the data needed is already present (as in the case of the [`buildSync`](./buildSync) method)
+the provider is not needed.
+
+so an empty object (`{}`) is a valid provider.
+
+## Pro and Cons of the empty provider
+
+The advantage of using `runWithProvider` with an empty provider over using directly [`buildSync`](./buildSync)
+is an even higher level interface to build transaction,
+which might turn useful for complex transactions.
+
+The disadvantages are that the [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner)
+methods might throw an error if some data that needs to be resolved (e.g. datum hashes or utxo references) is not present;
+
+so you will have to make sure you resolve your utxos and datums.

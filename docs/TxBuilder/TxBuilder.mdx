@@ -1,0 +1,88 @@
+---
+title: TxBuilder
+sidebar_position: 0
+---
+
+# `TxBuilder`
+
+`plu-ts/offchain` exposes the `TxBuilder` class.
+
+## How to use
+
+Its purpose is to allow you to build transactions more easly.
+
+You could infact build transactions by calling the [`Tx`](../cardano-ledger-ts/classes/Tx) constructor.
+
+However that requires a profound understanding of the structure of a Cardano transaction.
+
+for this reason we have the `TxBuilder`.
+
+You can get your `TxBuilder` by passing the [`ProtocolParameters`](../cardano-ledger-ts/interfaces/ProtocolParameters) (that you'll need to query)
+needed for the network you are building transactions for.
+
+constructor definiton:
+```ts
+constructor(
+    protocolParamters: Readonly<ProtocolParameters>,
+    genesisInfos?: GenesisInfos
+)
+```
+
+example:
+```ts
+type MyFavoriteServiceResponse = any
+
+// you'll need to adapt the protocol parameters
+// to the expected interface
+function adaptServiceProtocolParams(
+    response: MyFavoriteServiceResponse
+): ProtocolParameters
+{
+    /* do your magic */
+}
+
+const txBuilder = new TxBuilder(
+    adaptServiceProtocolParams(
+        await fetch("my-favorite-service.com/api/protocol-parameters")
+    )
+);
+```
+
+## Methods
+
+once you have your tx builder you can use all the following methods.
+
+- [`buildSync`](./buildSync)
+- [`runWithProvider`](./runWithProvider)
+- [`keepRelevant`](./keepRelevant)
+- [`calcLinearFee`](./calcLinearFee)
+- [`getMinimumOutputLovelaces`](./getMinimumOutputLovelaces)
+- [`setGenesisInfos`](./setGenesisInfos)
+- [`slotToPOSIX`](./slotToPOSIX)
+- [`posixToSlot`](./posixToSlot)
+- [`overrideTxRedeemers`](./overrideTxRedeemers)
+
+## `buildSync` or `runWithProvider`
+
+once you have a `TxBuilder` instance there are 2 ways to build a transaction:
+
+1) using [`buildSync`](./buildSync)
+2) getting a [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner) by passing a
+[`Partial<IProvider>`](../TxBuilderRunner%20API/IProvider#iprovider) to the [`runWithProvider`](./runWithProvider) method
+
+### Pro and Cons
+
+The [`buildSync`](./buildSync) method gives you full controll,
+you need to query the resolved utxos for the inputs,
+as well any other information required for transaction validation.
+
+Once you provide the data as specified in by [`ITxBuildArgs`](./buildSync#itxbuildargs)
+the `TxBuilder` instance will syncronously build and validate your transaction.
+
+If you don't want to take care of querying the data, you can pass a [`Provider`](../TxBuilderRunner%20API/IProvider#iprovider)
+to the [`runWithProvider`](./runWithProvider) method,
+to get a [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner) instance.
+
+The runner has many method that abstract the [`buildSync`](./buildSync) interface,
+so that you can describe your transaction an a much higher level,
+and if some that is missing it will be queried asynchronously using the [`Provider`](../TxBuilderRunner%20API/IProvider#iprovider) that was passed.

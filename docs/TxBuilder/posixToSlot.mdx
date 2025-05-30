@@ -1,0 +1,18 @@
+---
+title: posixToSlot
+sidebar_position: 8
+---
+
+# `posixToSlot`
+
+```ts
+posixToSlot( POSIX: `number` | `bigint` ): number
+```
+
+- `POSIX`: `number` | `bigint`
+
+given a POSIX time returns the equivalent slot number based on the [`GenesisInfos`](../miscellaneous/GenesisInfos)
+
+if no genesis infos are set the method throws an `Error`;
+
+you can set the genesis infos using the [`setGenesisInfos`](./setGenesisInfos) method.

@@ -1,0 +1,71 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #1a90ff
+    /*#017ACC*/
+  ;
+  --ifm-color-primary-dark: #0069af;
+  --ifm-color-primary-darker: #005a96;
+  --ifm-color-primary-darkest: #004777;
+  --ifm-color-primary-light: #0682d4;
+  --ifm-color-primary-lighter: #138ddf;
+  --ifm-color-primary-lightest: #209cee;
+  --ifm-link-color: #254fc2;
+  /* default */
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary-darkest);
+  --icon-link-color: #000;
+  /* --ifm-menu-color-active: #1a90ff; */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #36abff
+    /*#254fc2*/
+  ;
+  --ifm-color-primary-dark: #2136af;
+  --ifm-color-primary-darker: #1f28a5;
+  --ifm-color-primary-darkest: #1a3488;
+  --ifm-color-primary-light: #2982d5;
+  --ifm-color-primary-lighter: #327ad8;
+  --ifm-color-primary-lightest: #4fc1dd;
+  --ifm-link-color: #3584dd;
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary-light);
+  --icon-link-color: #fff;
+  /* --ifm-menu-color-active: #36abff; */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.code-block-error-line {
+  background-color: #ff000020;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid #ff000080;
+}
+
+.code-bad-practice {
+  background-color: #ff990020;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid #ffd90080;
+}
+
+.code-solution {
+  background-color: #66ff0020;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid #48ff0094;
+}
+
+.hidden {
+  display: none !important;
+}

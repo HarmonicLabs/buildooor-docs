@@ -1,0 +1,13 @@
+# `CanBeData`
+
+
+## type definition
+
+```ts
+type CanBeData = Data | ToUPLC | string;
+```
+
+either: 
+- [`Data`](../plutus-data/type-aliases/Data)
+- `ToUPLC` (any on-chain struct)
+- `string` (cbor string to be passed to [`dataFromCbor`](../plutus-data/functions/dataFromCbor))  

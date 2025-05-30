@@ -1,0 +1,56 @@
+# `GenesisInfos`
+
+## type definition
+
+```ts
+interface GenesisInfos {
+    /**
+     * ### POSIX timestamp of blockchain start
+     * ## with **milliseconds precision**
+    **/
+    readonly systemStartPOSIX: CanBeUInteger,
+    /**
+     * ### slot duration in **milliseconds**
+    **/
+    readonly slotLengthInMilliseconds: CanBeUInteger
+}
+```
+
+Genesis informations usually required to convert slots to POSIX timestamps and vice versa.
+
+## constants
+
+### `defaultPreviewGenesisInfos`
+
+```ts
+const defaultPreviewGenesisInfos: GenesisInfos = Object.freeze({
+    systemStartPOSIX: 1666656000_000,
+    slotLengthInMilliseconds: 1000
+} as GenesisInfos);
+```
+
+### `defaultPreprodGenesisInfos`
+```ts
+export const defaultPreprodGenesisInfos: GenesisInfos = Object.freeze({
+    systemStartPOSIX: 1666656000_000,
+    slotLengthInMilliseconds: 1000
+} as GenesisInfos);
+```
+
+### `defaultMainnetGenesisInfos`
+
+```ts
+export const defaultMainnetGenesisInfos: GenesisInfos = Object.freeze({
+    systemStartPOSIX: 1506203091_000,
+    slotLengthInMilliseconds: 1000
+} as GenesisInfos);
+```
+
+## functions
+
+### `isGenesisInfos`
+
+type declaraition:
+```ts
+function isGenesisInfos( stuff: any ): stuff is GenesisInfos
+```

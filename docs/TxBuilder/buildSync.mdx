@@ -1,0 +1,254 @@
+---
+title: buildSync
+sidebar_position: 1
+---
+
+## `ITxBuildArgs`
+
+```ts
+interface ITxBuildArgs {
+    inputs: [ ITxBuildInput, ...ITxBuildInput[] ], // TxBuildInput[] with length >= 1
+    changeAddress?: Address | AddressStr,
+    change?: ChangeInfos;
+    outputs?: ITxBuildOutput[],
+    readonlyRefInputs?: UTxO[],
+    requiredSigners?: PubKeyHash[],
+    collaterals?: UTxO[],
+    collateralReturn?: ITxBuildOutput,
+    mints?: ITxBuildMint[],
+    invalidBefore?: CanBeUInteger,
+    invalidAfter?: CanBeUInteger,
+    certificates?: ITxBuildCert[],
+    withdrawals?: ITxBuildWithdrawal[],
+    metadata?: TxMetadata,
+    protocolUpdateProposal?: ProtocolUpdateProposal
+}
+```
+
+`ITxBuildArgs` is the interface that is used by `txBuilder.buildSync` to understand how to build a `Tx`.
+
+The reuired arguments are [`inputs`](#inputs)
+and either a [`change`](#change) output
+or only a [`changeAddress`](#changeaddress)
+needed for automatic fee calculation.
+
+all the remaining fields are optional.
+
+:::info optional `outputs`
+
+the `outputs` is optional too
+
+if no `outputs` are specified all the input value is sent back to `change.address`
+(or `changeAddress` if no `change` is specified);
+
+:::
+
+### `inputs`
+
+type: `ITxBuildInput[]`
+
+a single input is described using `ITxBuildInput`
+```ts
+interface ITxBuildInput {
+    utxo: UTxO,
+    referenceScriptV2?: {
+        refUtxo: UTxO,
+        datum: CanBeData | "inline",
+        redeemer: CanBeData,
+    }
+    inputScript?: {
+        script: Script,
+        datum: CanBeData | "inline",
+        redeemer: CanBeData
+    }
+}
+```
+
+#### `utxo`
+
+required field, expects an instance of [`UTxO`](../cardano-ledger-ts/classes/UTxO)
+ 
+### `changeAddress`
+
+an instance of `Address` or a bech32 encoded address (starting with `"addr1"` or `"addr_test1"` if in testnet);
+
+will add an output to the specified address (in the **last** position in tx outputs ordering).
+
+### `change`
+
+like `changeAddress` but with more control over the output
+
+it also allows to set a `datum` and a `refScript` for the output
+
+of course no value can be specified as it is calculated by the `TxBuilder`
+
+
+### `outputs`
+
+an output is described using `ITxBuildOutput`
+```ts
+interface ITxBuildOutput {
+    address: Address,
+    value: Value,
+    datum?: Hash32 | CanBeData
+    refScript?: Script
+}
+```
+
+it requires an `Address` and a `Value`;
+
+optionally a `datum` which can be either an `Hash32`, anything `Data`-like. or `undefined`
+
+if `undefined` no datum is attached.
+if instance of `Hash32` the hash is attached in Plutus V1 style
+if anything `Data`-like an **inline** datum is attached ([CIP-0032](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0032))
+
+and the optional `refScript`
+
+if `undefined` no script is attached.
+if instance of `Script`, the script is attached to the resulting `UTxO` ([CIP-0033](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0033))
+
+### `readonlyRefInputs`
+
+```ts
+UTxO[]
+```
+
+any addtional reference inputs [CIP-0031](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0031)
+
+### `requiredSigners`
+
+```ts
+PubKeyHash[]
+```
+
+set of signers required by the transaction.
+
+this field is the one esposed in the `ScriptContext` of a smart contract
+
+
+### `collaterals`
+
+```ts
+UTxO[]
+```
+
+collateral inputs needed for smart contract validation.
+
+### `collateralReturn`
+
+```ts
+ITxBuildOutput[]
+```
+
+outputs specifying the return value from `collaterals`
+
+### `mints`
+
+```ts
+interface ITxBuildMint {
+    value: Value
+    script: {
+        inline: Script
+        policyId: Hash32
+        redeemer: CanBeData
+    } | {
+        ref: UTxO
+        policyId: Hash32
+        redeemer: CanBeData
+    }
+}
+```
+
+array of tokens to be minted or burned and respective minting policies.
+
+:::caution
+
+`value` MUST have a single entry
+
+:::
+
+
+### `invalidBefore`
+
+```ts
+type CanBeUInteger = number | bigint
+```
+
+the slot number after wich the transaction can be submited.
+
+### `invalidAfter`
+
+```ts
+type CanBeUInteger = number | bigint
+```
+
+the slot number after wich the transaction can is rejected.
+
+### `certificates`
+
+```ts
+interface ITxBuildCert {
+    cert: AnyCertificate
+    script?: {
+        inline: Script
+        redeemer: CanBeData
+    } | {
+        ref: UTxO
+        redeemer: CanBeData
+    }
+}
+```
+
+array of certificates to include in the transaction and respective (optional) stake validator scripts
+
+### `certificates`
+
+```ts
+interface interface ITxBuildWithdrawal {
+    withdrawal: {
+        rewardAccount: Hash28 | StakeAddress,
+        amount: Coin
+    },
+    script?: {
+        inline: Script
+        redeemer: CanBeData
+    } | {
+        ref: UTxO
+        redeemer: CanBeData
+    }
+}
+```
+
+array of withdrawals to include in the transaction and respective (optional) stake validator scripts
+
+### `metadata`
+
+```ts
+type ITxMetadata = {
+    [metadatum_label: number | string]: TxMetadatum 
+}
+
+class TxMetadata
+{
+    constructor(metadata: ITxMetadata)
+    {
+        // ...
+    }
+}
+```
+
+any metadata to  include in the transaction
+
+### `protocolUpdateProposal`
+
+```ts
+type ProtocolParametersUpdateMap = {
+    genesisHash: GenesisHash
+    changes: Partial<ProtocolParamters>
+}[]
+
+type ProtocolUpdateProposal = [ ProtocolParametersUpdateMap, Epoch ];
+```
+
+protocol update proposal to include in the transaciton.

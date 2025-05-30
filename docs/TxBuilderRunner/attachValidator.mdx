@@ -1,0 +1,17 @@
+---
+title: attachValidator
+sidebar_position: 5
+---
+
+# `attachValidator`
+
+```ts
+readonly attachValidator!: ( validator: Script<PlutusScriptType> ) => TxBuilderRunner
+```
+
+- `validator`: [`Script`](../cardano-ledger-ts/classes/Script)
+
+includes the script in the [`witnesses`](../cardano-ledger-ts/classes/Tx#witnesses)
+field of the resulting [`Tx`](../cardano-ledger-ts/classes/Tx)
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

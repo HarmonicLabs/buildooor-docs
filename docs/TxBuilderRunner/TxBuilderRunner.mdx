@@ -1,0 +1,65 @@
+---
+title: TxBuilderRunner
+sidebar_position: 0
+---
+
+# `TxBuilderRunner`
+
+```ts
+class TxBuilderRunner
+{
+    constructor(
+        txBuilder: TxBuilder,
+        provider: Partial<ITxRunnerProvider>
+    )
+}
+```
+
+The `TxBuilderRunner` is an abstraction over the [`TxBuilder`](../TxBuilder%20API/TxBuilder).
+
+To get `TxBuilderRunner` you will infact need a [`TxBuilder`](../TxBuilder%20API/TxBuilder)
+and some `Partial`\<[`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider)\>.
+
+For this reason, while there is nothing wrong in creating a `TxBuilderRunner`
+directly calling the constructor;
+it is suggested to use the [`runWithProvider` method on a `TxBuilder` instance](../TxBuilder%20API/runWithProvider)
+to create one instead.
+
+The [`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider) is `Partial` because
+a `TxBuilderRunner` instance will do its best to minimize calls to the provider, so if used properly, it is not needed.
+
+For a more detialed explanation on how the provider works
+please see the [`runWithProvider` documentation](../TxBuilder%20API/runWithProvider).
+
+
+## methods
+
+- [`build`](./build)
+- [`reset`](./reset)
+- [`addRequiredSigner`](./addRequiredSigner)
+- [`addRequiredSignerKey`](./addRequiredSignerKey)
+- [`attachValidator`](./attachValidator)
+- [`attachMetadata`](./attachMetadata)
+- [`attachMetadataJson`](./attachMetadataJson)
+- [`attachMetadataJsonWithConversion`](./attachMetadataJsonWithConversion)
+- [`setChangeAddress`](./setChangeAddress)
+- [`setCollateral`](./setCollateral)
+- [`setCollateralAmount`](./setCollateralAmount)
+- [`addInputs`](./addInputs)
+- [`addInput`](./addInput)
+- [`payTo`](./payTo)
+- [`delegateTo`](./delegateTo)
+- [`deregisterStake`](./deregisterStake)
+- [`mintAssets`](./mintAssets)
+- [`withdraw`](./withdraw)
+- `registerPool`
+- `retirePool`
+- `registerStake`
+- `registerStakeAddress`
+- [`referenceUtxos`](./referenceUtxos)
+- [`validFrom`](./validFrom)
+- [`validFromSlot`](./validFromSlot)
+- [`invalidBeforeSlot`](./invalidBeforeSlot)
+- [`validTo`](./validTo)
+- [`validToSlot`](./validToSlot)
+- [`invalidAfterSlot`](./invalidAfterSlot)

@@ -1,0 +1,33 @@
+---
+title: attachMetadataJsonWithConversion
+sidebar_position: 8
+---
+
+# `attachMetadataJson`
+
+```ts
+readonly attachMetadataJson!: (
+    label: number | bigint,
+    metadataJson: any
+) => TxBuilderRunner
+```
+
+- `label`: `number` | `bigint`;
+- `metadataJson`: `any`;
+
+like [`attachMetadata`](./attachMetadata),
+adds a metadata entry for the given `label`,
+or overrides if the same `label` was already present.
+
+`metadataJson` is a jsavascript value converted as follows
+
+- `object` -> [`TxMetadatumMap`](../cardano-ledger-ts/classes/TxMetadatumMap)
+- `array` -> [`TxMetadatumList`](../cardano-ledger-ts/classes/TxMetadatumList)
+- `string` -> [`TxMetadatumText`](../cardano-ledger-ts/classes/TxMetadatumText)
+(use [`attachMetadataJsonWithConversion`](./attachMetadataJsonWithConversion)
+for explicit conversion to [`TxMetadatumBytes`](../cardano-ledger-ts/classes/TxMetadatumBytes),
+or consider using [`attachMetadata`](./attachMetadata))
+- `number` -> [`TxMetadatumInt`](../cardano-ledger-ts/classes/TxMetadatumInt)
+- `bigint` -> [`TxMetadatumInt`](../cardano-ledger-ts/classes/TxMetadatumInt)
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

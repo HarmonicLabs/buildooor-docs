@@ -1,0 +1,20 @@
+---
+title: calcLinearFee
+sidebar_position: 4
+---
+
+# `calcLinearFee`
+
+```ts
+calcLinearFee( tx: Tx ): bigint
+```
+
+- `tx`: [`Tx`](../cardano-ledger-ts/classes/Tx)
+
+given a transaction, calculates the minFee based on the size and the protocol parameters
+
+:::warning minFee != fee
+
+the fee calculated by this method does not include the execution costs of eventual plutus scripts
+
+:::

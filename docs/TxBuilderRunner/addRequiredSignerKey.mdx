@@ -1,0 +1,18 @@
+---
+title: addRequiredSignerKey
+sidebar_position: 5
+---
+
+# `addRequiredSignerKey`
+
+```ts
+readonly addRequiredSignerKey: ( signerKey: Hash28 ) => TxBuilderRunner
+```
+
+- `signer`: [`Hash28`](../cardano-ledger-ts/classes/Hash28)
+
+adds the given key hash to the `requiredSigners` field of a [`Tx`](../cardano-ledger-ts/classes/Tx) instance.
+
+only the signers included in that field are passed to a contract's `ScriptContext`.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

@@ -1,0 +1,18 @@
+---
+title: validToSlot
+sidebar_position: 22
+---
+
+# `validToSlot`
+
+```ts
+readonly validToSlot!:  ( slot: bigint | number ) => TxBuilderRunner
+```
+
+- `slot`: `bigint` | `number` (POSIX time with **millisecond** precision)
+
+Sets the validity interval end of the transaction to the specified slot,
+
+use [`validTo`](./validTo) for POSIX time instead.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

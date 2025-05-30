@@ -1,0 +1,28 @@
+---
+title: addRequiredSigner
+sidebar_position: 4
+---
+
+# `addRequiredSigner`
+
+```ts
+readonly addRequiredSigner!: (
+    signer: Address | StakeAddress | AddressStr | StakeAddressBech32
+) => TxBuilderRunner
+```
+
+- `signer`: [`Address`](../cardano-ledger-ts/classes/Address) |
+[`StakeAddress`](../cardano-ledger-ts/classes/StakeAddress) |
+[`AddressStr`](../cardano-ledger-ts/type-aliases/AddressStr) |
+[`StakeAddressBech32`](../cardano-ledger-ts/type-aliases/StakeAddressBech32)
+
+adds the **all** credentials of the address to the `requiredSigners` field of a [`Tx`](../cardano-ledger-ts/classes/Tx) instance.
+
+only the signers included in that field are passed to a contract's `ScriptContext`.
+
+that includes payment credentials and, if present, stake credentials.
+
+if you have an address with both payment and stake credentials,
+but wish only to include one of them, consider using  the [`addRequiredSignerKey`](./addRequiredSignerKey.mdx) method.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

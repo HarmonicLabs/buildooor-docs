@@ -1,0 +1,40 @@
+---
+title: addInput
+sidebar_position: 13
+---
+
+# `addInput`
+
+```ts
+readonly addInput!: (
+    utxo: CanResolveToUTxO,
+    redeemer?: CanBeData,
+    script_or_ref?: CanResolveToUTxO | Script,
+    datum?: CanBeData | "inline"
+) => TxBuilderRunner
+```
+
+- `utxutxoos`: [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO)
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined`
+- `script_or_ref`: [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | [`Script`](../cardano-ledger-ts/classes/Script) | `undefined`
+- `datum`: [`CanBeData`](../miscellaneous/CanBeData) | `"inline"` | `undefined`
+
+adds the given `utxo` to the transaction inputs;
+if`utxo` doesn't satisfy the [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) interface
+it will be resolved using the provider [`resolveUtxos`](./IProvider#iresolveutxos) method.
+
+`redeemer` and `script_or_ref` must be specified together; if `datum` is missing defaults to `"inline"`.
+
+if `script_or_ref` is a [`Script`](../cardano-ledger-ts/classes/Script)
+it will be included in the [`witnesses`](../cardano-ledger-ts/classes/Tx#witnesses)
+field of the resulting [`Tx`](../cardano-ledger-ts/classes/Tx);
+
+if `script_or_ref` satisfies the [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) interface
+it will be used as reference input to provide the attached reference script ([`build`](./build) fails if missing)
+
+if `script_or_ref` satisfies the [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) interface
+or the [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) type alias
+it will be resolved using the provider [`resolveUtxos`](./IProvider#iresolveutxos) method and
+it will be used as reference input to provide the attached reference script ([`build`](./build) fails if missing)
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

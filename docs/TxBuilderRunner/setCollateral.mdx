@@ -1,0 +1,34 @@
+---
+title: setCollateral
+sidebar_position: 10
+---
+
+# `setCollateral`
+
+```ts
+readonly setCollateral!: (
+    collateral: CanResolveToUTxO,
+    collateralOutput?: ITxOut 
+) => TxBuilderRunner
+```
+
+- `collateral`: [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO)
+- `collateralOutput`: [`ITxOut`](../cardano-ledger-ts/interfaces/ITxOut) (or [`TxOut`](../cardano-ledger-ts/classes/TxOut.md))
+
+Sets the collateral input, and optionally output, for a transaction.
+
+If this method is not used, but the transaction needs collateral due to the presence of a plutus script,
+the [`TxBuilderRunner`](./TxBuilderRunner) instance will try to use one of the normal inputs as collateral,
+see [`setCollateralAmount`](./setCollateralAmount) for more infos.
+
+`collateral` can either be a resolved [`UTxO`](../cardano-ledger-ts/classes/UTxO)
+or an unresolved [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef)
+
+in case it is an unresolved [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef)
+a call to the [`ITxRunnerProvider` `resolveUtxos`](./IProvider#iresolveutxos) method
+is done in the [`build`](./build) method;
+if [`resolveUtxos`](./IProvider#iresolveutxos) is missing on the provider the [`build`](./build) method will throw an `Error`.
+
+an additional `collateralOutput` may be specified.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

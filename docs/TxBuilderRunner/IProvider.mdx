@@ -1,0 +1,140 @@
+---
+title: IProvider
+sidebar_position: 1
+---
+
+## `ITxRunnerProvider`
+
+Only a subset of a [`IProvider`](#iprovider) methods might be needed by a [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner);
+
+so here is the `ITxRunnerProvider` interface:
+```ts
+interface ITxRunnerProvider extends
+    IGetGenesisInfos,
+    IResolveUTxOs,
+    IResolveDatumHashes,
+    Partial<IGetChangeAddress>
+{}
+```
+
+### `ITxRunnerProvider` methods
+
+- [`getGenesisInfos`](#getgenesisinfos)
+- [`resolveUtxos`](#resolveutxos)
+- [`resolveDatumHashes`](#resolvedatumhashes)
+
+optionally: 
+- [`getChangeAddress`](#getchangeaddress)
+
+## `IProvider`
+
+definition:
+
+```ts
+interface IProvider extends
+    IGetGenesisInfos,
+    IGetProtocolParameters,
+    IResolveUTxOs, 
+    IResolveDatumHashes, 
+    ISubmitTx,
+    ISignTx,
+    Partial<IGetChangeAddress>
+{}
+```
+
+### `IGetGenesisInfos`
+```ts
+interface IGetGenesisInfos {
+    getGenesisInfos: () => Promise<GenesisInfos>
+}
+```
+### `IGetProtocolParameters`
+```ts
+interface IGetProtocolParameters {
+    getProtocolParameters: () => Promise<ProtocolParameters>
+}
+```
+### `IResolveUTxOs`
+```ts
+interface IResolveUTxOs {
+    resolveUtxos: ( utxos: CanResolveToUTxO[] ) => Promise<UTxO[]>,
+}
+```
+### `IResolveDatumHashes`
+```ts
+interface IResolveDatumHashes {
+    resolveDatumHashes: ( hashes: Hash32[] ) => Promise<{
+        hash: string,
+        datum: CanBeData 
+    }[]>
+}
+```
+### `ISubmitTx`
+```ts
+interface ISubmitTx {
+    submitTx: ( txCBOR: string ) => Promise<string> 
+}
+```
+### `ISignTx`
+```ts
+interface ISignTx {
+    signTx: ( txCBOR: string ) => Promise<string> 
+}
+```
+### `IGetChangeAddress`
+```ts
+interface IGetChangeAddress {
+    getChangeAddress: () => Promise<AddressStr | Address>
+}
+```
+
+## methods
+
+### `getGenesisInfos`
+
+returns: `Promise`\<[`GenesisInfos`](../miscellaneous/GenesisInfos)\>
+
+used to query genesis infos if none are already present.
+
+genesis infos are only needed in case [`invalidBefore`](../TxBuilder%20API/buildSync#invalidbefore)
+or [`invalidAfter`](../TxBuilder%20API/buildSync#invalidafter) are used.
+
+not needed otherwise.
+
+### `getProtocolParameters`
+
+returns: `Promise`\<[`ProtocolParameters`](../cardano-ledger-ts/interfaces/ProtocolParameters)\>
+
+utility method of a provider to query protocol parameters.
+
+**NOT REQUIRED by [`ITxRunnerProvider`](#itxrunnerprovider)**;
+
+### `resolveUtxos`
+
+argument: [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO)\[\]
+
+returns: `Promise`\<[`UTxO`](../cardano-ledger-ts/classes/UTxO)\[\]\>
+
+given an array of utxo references to resolve expects an array of [`UTxO`](../cardano-ledger-ts/classes/UTxO)s back.
+
+A [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner) instance won't require this method
+**if** the utxos needed:
+- are already provided as [`UTxO`](../cardano-ledger-ts/classes/UTxO) useAllPluginInstancesData,
+- or already satisfy the [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) interface.
+
+### `resolveDatumHashes`
+
+argument: [`Hash32`](../cardano-ledger-ts/classes/Hash32)[]; hashes of the datums to be resolved
+
+returns: `Promise`\<\{ hash: `string`, datum: [`CanBeData`](../miscellaneous/CanBeData) \}[]\>
+
+given an array of datum hashes queries the respective datums.
+
+only needed if no datum for a given hash is known.
+
+A [`TxBuilderRunner`](../TxBuilderRunner%20API/TxBuilderRunner) instance
+won't require this method **if** all the datums are provided as [`Data`](../plutus-data/type-aliases/Data)
+
+### `getChangeAddress`
+
+provides a default `changeAddress` if none is specified.

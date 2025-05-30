@@ -1,0 +1,11 @@
+# `CanBePoolKeyHash`
+
+```ts
+type CanBePoolKeyHash = Hash28 | `pool1${string}` | `pool_test1${string}` | string /* hex */ | Uint8Array;
+```
+
+either:
+- [`Hash28`](../cardano-ledger-ts/classes/Hash28)
+- `` `pool1${string}` | `pool_test1${string}` `` (bech32)
+- `string` ( hex, length 56 )
+- `Uint8Array` ( length 28 )

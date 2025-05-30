@@ -1,0 +1,20 @@
+---
+title: keepRelevant
+sidebar_position: 3
+---
+
+# `keepRelevant`
+
+```ts
+keepRelevant(
+    requestedOutputSet: Value | ValueUnits,
+    initialUTxOSet: ITxBuildInput[],
+    minimumLovelaceRequired: number | bigint = 5_000_000,
+): ITxBuildInput[]
+```
+
+- `requestedOutputSet`: `Value` | 'ValueUnits',
+- `initialUTxOSet`: [`ITxBuildInput`](./buildSync#inputs)\[\],
+- `minimumLovelaceRequired`: `number` | `bigint`
+
+coin selection algorithm.

@@ -1,0 +1,20 @@
+---
+title: validTo
+sidebar_position: 21
+---
+
+# `validTo`
+
+```ts
+readonly validTo!:  ( POSIX: bigint | number ) => TxBuilderRunner
+```
+
+- `POSIX`: `bigint` | `number` (POSIX time with **millisecond** precision)
+
+Sets the validity interval end of the transaction to the POISX time with **millisecond** precision specified
+(the result of 
+[`Date.now()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) 
+or [`Date.prototype.valueOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf)
+in javascript)
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

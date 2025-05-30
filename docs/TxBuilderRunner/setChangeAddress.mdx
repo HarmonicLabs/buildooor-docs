@@ -1,0 +1,22 @@
+---
+title: setChangeAddress
+sidebar_position: 9
+---
+
+# `setChangeAddress`
+
+```ts
+readonly setChangeAddress!: ( changeAddr: Address | AddressStr ) => TxBuilderRunner
+```
+
+- `changeAddr`: [`Address`](../cardano-ledger-ts/classes/Address) | [`AddressStr`](../cardano-ledger-ts/type-aliases/AddressStr)
+
+explicitly sets the change address;
+
+if missing, an attempt to call the [`ITxRunnerProvider` `getChangeAddress` method](./IProvider#igetchangeaddress) is done
+
+if still missing the first input's address with `PubKeyHash` payment credentials (not script) will be used
+
+if all the above fail, a call to the [`build` method](./build) will throw an `Error`.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

@@ -1,0 +1,39 @@
+---
+title: overrideTxRedeemers
+sidebar_position: 9
+---
+
+# `overrideTxRedeemers`
+
+```ts
+overrideTxRedeemers( tx: Tx, newRedeemers: TxRedeemer[] ): Tx
+```
+
+- `tx`: [`Tx`](../cardano-ledger-ts/classes/Tx)
+- `newRedeemers`: [`TxRedeemer`](../cardano-ledger-ts/classes/TxRedeemer)\[\]
+
+
+Replaces the redeemers and clears vkeyWitnesses in the witness set
+and re-computes the [`scriptDataHash`](../cardano-ledger-ts/classes/TxBody#scriptdatahash) in the body
+
+This might be needed in some **rare** cases where the plutus script calculation is offset by some units.
+
+The input transaction is readonly and is not modified.
+
+**A NEW TRANSACTION IS CREATED** with vkey witness set empty
+(the new transaction is unsigned)
+
+to summarize, the new transaction differs in:
+1) `tx.body.scriptDataHash`
+2) `tx.witnesses.redeemers`
+3) `tx.witnesses.vkeyWitnesses` (empty)
+
+:::warning the new transaction is unsigned
+
+empty vkeyWitnesses implies any signature present in the input transaction is discarded
+
+this is because the transaction body changed, so the signature would be invalid.
+
+if you use this method make sure to request the user to sign the transaciton **ONLY AFTER** modifying redeemers
+
+:::

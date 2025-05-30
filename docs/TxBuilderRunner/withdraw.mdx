@@ -1,0 +1,24 @@
+---
+title: withdraw
+sidebar_position: 24
+---
+
+# `withdraw`
+
+```ts
+readonly withdraw!: (
+    stakeAddress: CanBeStakeCreds,
+    amount: number | bigint,
+    redeemer?: CanBeData,
+    script_or_ref?: Script | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `stakeAddress`: [`CanBeStakeCreds`](../miscellaneous/CanBeStakeCreds),
+- `amount`: `number` | `bigint`,
+- `redeemer`?: [`CanBeData`](../miscellaneous/CanBeData),
+- `script_or_ref`?: [`Script`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO)
+
+withdraws stake rewards from a given reward account.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

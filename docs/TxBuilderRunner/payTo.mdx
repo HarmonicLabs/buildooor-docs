@@ -1,0 +1,27 @@
+---
+title: payTo
+sidebar_position: 14
+---
+
+# `payTo`
+
+```ts
+readonly payTo: (
+    address: Address | AddressStr,
+    amount: number | bigint | Value,
+    datum?: CanBeData,
+    refScript?: Script
+) => TxBuilderRunner
+```
+- `address`: [`Address`](../cardano-ledger-ts/classes/Address) | [`AddressStr`](../cardano-ledger-ts/type-aliases/AddressStr),
+- `amount`: `number` | `bigint` | [`Value`](../cardano-ledger-ts/classes/Value),
+- `datum`?: [`CanBeData`](../miscellaneous/CanBeData),
+- `refScript`?: [`Script`](../cardano-ledger-ts/classes/Script)
+
+adds a transaction output.
+
+if `amount` is `number` or `bigint` it is intended to be lovelaces only.
+
+if `datum` is present is always added as inline datum.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

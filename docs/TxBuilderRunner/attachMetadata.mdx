@@ -1,0 +1,21 @@
+---
+title: attachMetadata
+sidebar_position: 6
+---
+
+# `attachMetadata`
+
+```ts
+readonly attachMetadata!: (
+    label: number | bigint,
+    metadata: TxMetadatum
+) => TxBuilderRunner
+```
+
+- `label`: `number` | `bigint`;
+- `metadata`: [`TxMetadatum`](../cardano-ledger-ts/type-aliases/TxMetadatum);
+
+adds a metadata entry for the given `label`,
+or overrides if the same `label` was already present.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

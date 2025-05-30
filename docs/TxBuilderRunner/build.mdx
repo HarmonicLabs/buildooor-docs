@@ -1,0 +1,18 @@
+---
+title: build
+sidebar_position: 2
+---
+
+# `build`
+
+```ts
+readonly build:() => Promise<Tx>
+```
+
+if any unresolved data was passed it is resolved via the provider passed;
+
+if the method needed are not present on the provider throws an `Error`;
+
+finalizes the [`TxBuilderRunner`](./TxBuilderRunner) instance,
+so that it can be re-used for other transactions,
+and returns a [`Tx`](../cardano-ledger-ts/classes/Tx) instance

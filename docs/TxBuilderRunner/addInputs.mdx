@@ -1,0 +1,22 @@
+---
+title: addInputs
+sidebar_position: 12
+---
+
+# `addInputs`
+
+```ts
+readonly addInputs!: ( utxos: CanResolveToUTxO[] ) => TxBuilderRunner
+```
+
+- `utxos`: [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO)\[\]
+
+adds the given `utxos` to the transaction inputs;
+the elements of the array that don't satisfy the [`IUTxO`](../cardano-ledger-ts/interfaces/IUTxO) interface
+will be resolved using the provider [`resolveUtxos`](./IProvider#iresolveutxos) method.
+
+this method does not allow to specify plutus realated arguments.
+
+for inputs that need redeemers, scripts and datums use [`addInput`](./addInput).
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

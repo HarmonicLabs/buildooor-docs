@@ -1,0 +1,22 @@
+---
+title: mintAsstes
+sidebar_position: 17
+---
+
+# `mintAsstes`
+
+```ts
+readonly mintAssets: (
+    assets: IValuePolicyEntry,
+    script_or_ref: Script | CanResolveToUTxO,
+    redeemer?: CanBeData,
+) => TxBuilderRunner
+```
+
+- `assets`: `IValuePolicyEntry`
+- `script_or_ref`: [`Script`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO.mdx) | `undefined`
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData.mdx) | `undefined`,
+
+`redeemer` may be omitted if `script_or_ref` is a native script.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).
