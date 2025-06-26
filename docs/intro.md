@@ -1,26 +1,24 @@
 ---
-sidebar_position: 999999
-slug: /plu-ts
+sidebar_position: 0
+slug: /
 ---
 
-# plu-ts
+# Buildooor Docs
 
 Built with ❤️ by [Harmonic Laboratories](https://www.harmoniclabs.tech/)
 
-This documentation is for `plu-ts` v0.8.0^, if you are using a previous version it is suggested to install the latest version, feel free to ask for help in the [Harmonic Labs' discord server](https://discord.gg/CGKNcG7ade)
+This documentation is for `buildooor` v0.1.11^, if you are using a previous version it is suggested to install the latest version, feel free to ask for help in the [Harmonic Labs' discord server](https://discord.gg/CGKNcG7ade)
 
 ## Introduction
 
-`plu-ts` is a library designed for building Cardano dApps in an efficient and developer friendly way.
+`buildooor` is a library designed for building Cardano dApps in an efficient and developer friendly way.
 
-It is composed of two main parts:
+The focus for buildooor is the `offchain` code for transaction building and handling other offchain functions.
 
-- `plu-ts/onchain`: an [eDSL](https://en.wikipedia.org/wiki/Domain-specific_language#External_and_Embedded_Domain_Specific_Languages) (embedded Domain Specific Language) that leverages Typescript as the host language; designed to generate efficient Smart Contracts.
-- `plu-ts/offchain`: a set of classes and functions that allow reuse of onchain types.
 
 # Getting started
 
-see [Getting Started](./Getting%20Started) to begin your journey in plu-ts
+see [Getting Started](./getting-started) to install buildooor and start developing Cardano dApps.
 
 ## Design principles
 
