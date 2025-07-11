@@ -1,4 +1,9 @@
-# buildooor Library Documentation: Generating Cardano Accounts and Addresses
+---
+sidebar_position: 0
+slug: '/examples/account-address-generation'
+---
+
+# Generating Accounts and Addresses
 
 ## Introduction
 
