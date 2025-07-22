@@ -22,7 +22,7 @@ see [Getting Started](./getting-started) to install buildooor and start developi
 
 ## Design principles
 
-`plu-ts` was designed with the following goals in mind, in order of importance:
+`buildooor` was designed with the following goals in mind, in order of importance:
 
 - Smart Contract efficiency
 - developer experience

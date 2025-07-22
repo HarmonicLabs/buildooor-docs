@@ -5,7 +5,7 @@ sidebar_position: 0
 
 # `TxBuilder`
 
-`plu-ts/offchain` exposes the `TxBuilder` class.
+`buildooor` exposes the `TxBuilder` class.
 
 ## How to use
 
@@ -52,15 +52,24 @@ const txBuilder = new TxBuilder(
 
 once you have your tx builder you can use all the following methods.
 
+- [`build`](./build)
 - [`buildSync`](./buildSync)
 - [`runWithProvider`](./runWithProvider)
 - [`keepRelevant`](./keepRelevant)
 - [`calcLinearFee`](./calcLinearFee)
+- [`calcMinFee`](./calcMinFee)
 - [`getMinimumOutputLovelaces`](./getMinimumOutputLovelaces)
+- [`addMinLovelacesIfMissing`](./addMinLovelacesIfMissing)
+- [`minimizeLovelaces`](./minimizeLovelaces)
 - [`setGenesisInfos`](./setGenesisInfos)
 - [`slotToPOSIX`](./slotToPOSIX)
 - [`posixToSlot`](./posixToSlot)
 - [`overrideTxRedeemers`](./overrideTxRedeemers)
+- [`validatePhaseTwoVerbose`](./validatePhaseTwoVerbose)
+- [`validatePhaseTwo`](./validatePhaseTwo)
+- [`assertMinOutLovelaces`](./assertMinOutLovelaces)
+- [`assertCorrectChangeOutput`](./assertCorrectChangeOutput)
+- [`findCollaterals`](./findCollaterals)
 
 ## `buildSync` or `runWithProvider`
 

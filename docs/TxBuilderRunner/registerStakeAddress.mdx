@@ -1,0 +1,35 @@
+---
+title: registerStakeAddress
+sidebar_position: 13
+---
+
+# `registerStakeAddress`
+
+```ts
+registerStakeAddress(
+    delegator: CanBeStakeCreds,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+): TxBuilderRunner
+```
+
+Alias for [`registerStake`](./registerStake). Registers a stake address on the Cardano blockchain. This is required before a stake address can be used for delegation or rewards.
+
+## Parameters
+
+- `delegator`: The stake credentials to register
+- `redeemer`: Optional redeemer for script stake credentials
+- `script_or_ref`: Optional script or reference input for script stake credentials. Can be:
+  - A Plutus script that will be included in the transaction's witness set
+  - A UTxO reference that contains the script
+  - A reference to a UTxO that will be resolved using the provider's `resolveUtxos` method
+
+## Returns
+
+Returns a reference to the same `TxBuilderRunner` instance for method chaining.
+
+## See Also
+
+- [`registerStake`](./registerStake) - The base method this aliases
+- [`deregisterStake`](./deregisterStake)
+- [`delegateTo`](./delegateTo) 

@@ -1,0 +1,29 @@
+---
+title: assertMinOutLovelaces
+sidebar_position: 16
+---
+
+# `assertMinOutLovelaces`
+
+```ts
+assertMinOutLovelaces(txOuts: TxOut[]): void
+```
+
+Verifies that all transaction outputs have at least the minimum required Lovelaces based on the protocol parameters.
+
+## Parameters
+
+- `txOuts`: [`TxOut[]`](../cardano-ledger-ts/classes/TxOut) - Array of transaction outputs to validate
+
+## Returns
+
+This method doesn't return a value. Instead, it throws an error if any output has insufficient Lovelaces.
+
+## Info
+
+This method:
+1. Checks each output using [`getMinimumOutputLovelaces`](./getMinimumOutputLovelaces)
+2. Throws an error if any output has less than the minimum required Lovelaces
+3. Continues silently if all outputs have sufficient Lovelaces
+
+This is useful for validating transaction outputs before submitting to the network. To automatically fix outputs with insufficient Lovelaces, use [`addMinLovelacesIfMissing`](./addMinLovelacesIfMissing) instead.

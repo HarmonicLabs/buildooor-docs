@@ -1,0 +1,25 @@
+---
+title: build
+sidebar_position: 1
+---
+
+# `build`
+
+```ts
+build(buildArgs: ITxBuildArgs, buildOpts?: ITxBuildOptions): Promise<Tx>
+```
+
+The `build` method is an asynchronous wrapper around [`buildSync`](./buildSync). It takes the same arguments as `buildSync` but returns a Promise.
+
+## Parameters
+
+- `buildArgs`: [`ITxBuildArgs`](./buildSync#itxbuildargs) - The arguments needed to build the transaction
+- `buildOpts`: [`ITxBuildOptions`](./buildSync#itxbuildoptions) - Optional build options
+
+## Returns
+
+Returns a Promise that resolves to a [`Tx`](../cardano-ledger-ts/classes/Tx) instance.
+
+## Info
+
+Currently, this method simply wraps `buildSync` in a Promise. In future versions, it might implement multi-threading using Web Workers for improved performance.

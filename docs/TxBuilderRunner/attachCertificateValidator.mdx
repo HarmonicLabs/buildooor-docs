@@ -1,0 +1,29 @@
+---
+title: attachCertificateValidator
+sidebar_position: 7
+---
+
+# `attachCertificateValidator`
+
+```ts
+attachCertificateValidator(
+    validator: Script<PlutusScriptType>
+): TxBuilderRunner
+```
+
+Alias for [`attachValidator`](./attachValidator). This method is provided for semantic clarity when specifically attaching certificate validators.
+
+## Parameters
+
+- `validator`: The Plutus script to be attached as a certificate validator
+
+## Returns
+
+Returns a reference to the same `TxBuilderRunner` instance for method chaining.
+
+## See Also
+
+- [`attachValidator`](./attachValidator) - The base method this aliases
+- [`attachMintingValidator`](./attachMintingValidator)
+- [`attachSpendingValidator`](./attachSpendingValidator)
+- [`attachWithdrawalValidator`](./attachWithdrawalValidator) 

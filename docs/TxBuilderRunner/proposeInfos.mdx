@@ -1,0 +1,24 @@
+---
+title: proposeInfos
+sidebar_position: 43
+---
+
+# `proposeInfos`
+
+```ts
+readonly proposeInfos!: (
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal with only procedural information, without specifying a governance action. This can be used as a base for other proposal types or for special cases where only procedural information is needed.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner).

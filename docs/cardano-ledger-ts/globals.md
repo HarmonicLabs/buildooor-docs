@@ -103,6 +103,7 @@
 
 - [Cip30LikeSignTx](interfaces/Cip30LikeSignTx.md)
 - [DnsPoolRelay](interfaces/DnsPoolRelay.md)
+- [IAddress](interfaces/IAddress.md)
 - [IAnchor](interfaces/IAnchor.md)
 - [IAuxiliaryData](interfaces/IAuxiliaryData.md)
 - [ICert](interfaces/ICert.md)

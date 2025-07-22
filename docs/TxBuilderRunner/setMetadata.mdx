@@ -1,0 +1,30 @@
+---
+title: setMetadata
+sidebar_position: 11
+---
+
+# `setMetadata`
+
+```ts
+setMetadata(
+    label: CanBeUInteger,
+    metadata: TxMetadatum
+): TxBuilderRunner
+```
+
+Alias for [`attachMetadata`](./attachMetadata). Adds a metadata entry for the given `label`, or overrides if the same `label` was already present.
+
+## Parameters
+
+- `label`: The metadata label (must be convertible to an unsigned integer)
+- `metadata`: The metadata value to attach
+
+## Returns
+
+Returns a reference to the same `TxBuilderRunner` instance for method chaining.
+
+## See Also
+
+- [`attachMetadata`](./attachMetadata) - The base method this aliases
+- [`attachMetadataJson`](./attachMetadataJson)
+- [`attachMetadataJsonWithConversion`](./attachMetadataJsonWithConversion) 

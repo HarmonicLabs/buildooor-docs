@@ -18,14 +18,14 @@ class TxBuilderRunner
 The `TxBuilderRunner` is an abstraction over the [`TxBuilder`](../TxBuilder%20API/TxBuilder).
 
 To get `TxBuilderRunner` you will infact need a [`TxBuilder`](../TxBuilder%20API/TxBuilder)
-and some `Partial`\<[`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider)\>.
+and some `Partial`\<[`ITxRunnerProvider`](./IProvider)\>.
 
 For this reason, while there is nothing wrong in creating a `TxBuilderRunner`
 directly calling the constructor;
 it is suggested to use the [`runWithProvider` method on a `TxBuilder` instance](../TxBuilder%20API/runWithProvider)
 to create one instead.
 
-The [`ITxRunnerProvider`](../TxBuilderRunner%20API/IProvider#itxrunnerprovider) is `Partial` because
+The [`ITxRunnerProvider`](./IProvider) is `Partial` because
 a `TxBuilderRunner` instance will do its best to minimize calls to the provider, so if used properly, it is not needed.
 
 For a more detialed explanation on how the provider works
@@ -38,8 +38,14 @@ please see the [`runWithProvider` documentation](../TxBuilder%20API/runWithProvi
 - [`reset`](./reset)
 - [`addRequiredSigner`](./addRequiredSigner)
 - [`addRequiredSignerKey`](./addRequiredSignerKey)
+- [`attachMemo`](./attachMemo)
+- [`attachCertificateValidator`](./attachCertificateValidator)
+- [`attachMintingValidator`](./attachMintingValidator)
+- [`attachSpendingValidator`](./attachSpendingValidator)
+- [`attachWithdrawalValidator`](./attachWithdrawalValidator)
 - [`attachValidator`](./attachValidator)
 - [`attachMetadata`](./attachMetadata)
+- [`setMetadata`](./setMetadata)
 - [`attachMetadataJson`](./attachMetadataJson)
 - [`attachMetadataJsonWithConversion`](./attachMetadataJsonWithConversion)
 - [`setChangeAddress`](./setChangeAddress)
@@ -48,14 +54,14 @@ please see the [`runWithProvider` documentation](../TxBuilder%20API/runWithProvi
 - [`addInputs`](./addInputs)
 - [`addInput`](./addInput)
 - [`payTo`](./payTo)
-- [`delegateTo`](./delegateTo)
-- [`deregisterStake`](./deregisterStake)
 - [`mintAssets`](./mintAssets)
 - [`withdraw`](./withdraw)
-- `registerPool`
-- `retirePool`
-- `registerStake`
-- `registerStakeAddress`
+- [`delegateTo`](./delegateTo)
+- [`registerPool`](./registerPool)
+- [`retirePool`](./retirePool)
+- [`registerStake`](./registerStake)
+- [`registerStakeAddress`](./registerStakeAddress)
+- [`deregisterStake`](./deregisterStake)
 - [`referenceUtxos`](./referenceUtxos)
 - [`validFrom`](./validFrom)
 - [`validFromSlot`](./validFromSlot)
@@ -63,3 +69,17 @@ please see the [`runWithProvider` documentation](../TxBuilder%20API/runWithProvi
 - [`validTo`](./validTo)
 - [`validToSlot`](./validToSlot)
 - [`invalidAfterSlot`](./invalidAfterSlot)
+- [`vote`](./vote)
+- [`voteDrep`](./voteDrep)
+- [`voteScriptDrep`](./voteScriptDrep)
+- [`voteConstitutionalComittee`](./voteConstitutionalComittee)
+- [`voteScriptConstitutionalComittee`](./voteScriptConstitutionalComittee)
+- [`voteStakePool`](./voteStakePool)
+- [`propose`](./propose)
+- [`proposeParametersChanges`](./proposeParametersChanges)
+- [`proposeHardForkInitiation`](./proposeHardForkInitiation)
+- [`proposeTreasuryWithdrawal`](./proposeTreasuryWithdrawal)
+- [`proposeNoConfidence`](./proposeNoConfidence)
+- [`proposeComitteeUpdate`](./proposeComitteeUpdate)
+- [`proposeNewConstitution`](./proposeNewConstitution)
+- [`proposeInfos`](./proposeInfos)

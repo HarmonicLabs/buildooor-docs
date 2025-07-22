@@ -1,0 +1,28 @@
+---
+title: proposeNewConstitution
+sidebar_position: 42
+---
+
+# `proposeNewConstitution`
+
+```ts
+readonly proposeNewConstitution!: (
+    constitution: IConstitution,
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    govActionId?: ITxOutRef | TxOutRefStr,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `constitution`: [`IConstitution`](../cardano-ledger-ts/interfaces/IConstitution) - The new constitution details
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `govActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) | `undefined` - Optional reference to a previous governance action
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal to update the constitution. The new constitution includes the constitutional document and any associated metadata.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

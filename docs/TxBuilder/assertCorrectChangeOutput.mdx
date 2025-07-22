@@ -1,0 +1,30 @@
+---
+title: assertCorrectChangeOutput
+sidebar_position: 17
+---
+
+# `assertCorrectChangeOutput`
+
+```ts
+assertCorrectChangeOutput(changeOutput: TxOut): void
+```
+
+Validates that a change output meets all protocol requirements and is properly constructed.
+
+## Parameters
+
+- `changeOutput`: [`TxOut`](../cardano-ledger-ts/classes/TxOut) - The change output to validate
+
+## Returns
+
+This method doesn't return a value. Instead, it throws an error if the change output is invalid.
+
+## Info
+
+This method verifies that the change output:
+1. Has sufficient Lovelaces (using [`assertMinOutLovelaces`](./assertMinOutLovelaces))
+2. Has a valid address format
+3. Has properly normalized asset quantities
+4. Doesn't contain unnecessary data (like datums or scripts)
+
+This validation is important because incorrect change outputs can cause transaction validation failures on the network. The method is typically used internally by the transaction builder but can be called directly when manually constructing transactions.

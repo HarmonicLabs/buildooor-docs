@@ -6,9 +6,19 @@ sidebar_position: 7
 # `setGenesisInfos`
 
 ```ts
-setGenesisInfos!: ( geneisInfos: GenesisInfos ) => void;
+setGenesisInfos(genesisInfos: GenesisInfos): void
 ```
 
-- `geneisInfos`: [`GenesisInfos`](../miscellaneous/GenesisInfos)
+Sets the genesis information required for slot and time conversions.
 
-Sets the `genesisInfos` property.
+## Parameters
+
+- `genesisInfos`: [`GenesisInfos`](../miscellaneous/GenesisInfos) - The genesis information object containing network parameters
+
+## Returns
+
+This method doesn't return a value.
+
+## Info
+
+This method must be called before using time/slot conversion functions like [`posixToSlot`](./posixToSlot) and [`slotToPOSIX`](./slotToPOSIX). The genesis information contains essential network parameters needed for accurate time calculations.

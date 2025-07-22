@@ -1,0 +1,28 @@
+---
+title: proposeParametersChanges
+sidebar_position: 37
+---
+
+# `proposeParametersChanges`
+
+```ts
+readonly proposeParametersChanges!: (
+    changes: Partial<ProtocolParameters>,
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    govActionId?: ITxOutRef | TxOutRefStr,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `changes`: `Partial<ProtocolParameters>` (see [`ProtocolParameters`](../cardano-ledger-ts/interfaces/ProtocolParameters)) - The proposed changes to protocol parameters
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `govActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) | `undefined` - Optional reference to a previous governance action
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal to change protocol parameters. The changes can include any subset of protocol parameters.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

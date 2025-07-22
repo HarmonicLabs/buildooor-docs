@@ -1,0 +1,26 @@
+---
+title: proposeTreasuryWithdrawal
+sidebar_position: 39
+---
+
+# `proposeTreasuryWithdrawal`
+
+```ts
+readonly proposeTreasuryWithdrawal!: (
+    withdrawals: ITxWithdrawals | TxWithdrawals,
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `withdrawals`: [`ITxWithdrawals`](../cardano-ledger-ts/interfaces/ITxWithdrawals) | [`TxWithdrawals`](../cardano-ledger-ts/classes/TxWithdrawals) - The treasury withdrawal details
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal to withdraw funds from the treasury. The withdrawals specify the amounts and destination addresses for the treasury funds.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

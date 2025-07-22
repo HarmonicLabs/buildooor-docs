@@ -1,0 +1,34 @@
+---
+title: calcMinFee
+sidebar_position: 6
+---
+
+# `calcMinFee`
+
+```ts
+calcMinFee(tx: Tx, minimum?: CanBeUInteger | undefined): bigint
+```
+
+Calculates the minimum fee required for a transaction based on the protocol parameters.
+
+## Parameters
+
+- `tx`: [`Tx`](../cardano-ledger-ts/classes/Tx) - The transaction to calculate the fee for
+- `minimum`: `CanBeUInteger | undefined` - Optional minimum fee value. If provided, the method will return at least this amount.
+
+## Returns
+
+Returns a `bigint` representing the minimum fee in Lovelaces required for the transaction.
+
+## Info
+
+This method uses the protocol parameters provided during `TxBuilder` initialization to calculate the fee. The calculation takes into account:
+- Transaction size
+- Execution units for scripts (if any)
+- Memory usage
+- Protocol parameter fee coefficients
+
+The fee is calculated using the linear fee formula: `a * size + b`, where:
+- `a` is the fee per byte parameter
+- `size` is the transaction size in bytes  
+- `b` is the minimum fee parameter

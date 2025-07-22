@@ -13,8 +13,30 @@ keepRelevant(
 ): ITxBuildInput[]
 ```
 
-- `requestedOutputSet`: `Value` | 'ValueUnits',
-- `initialUTxOSet`: [`ITxBuildInput`](./buildSync#inputs)\[\],
-- `minimumLovelaceRequired`: `number` | `bigint`
+Performs coin selection to find the optimal set of inputs that can cover the requested output values.
 
-coin selection algorithm.
+## Parameters
+
+- `requestedOutputSet`: [`Value`](../cardano-ledger-ts/classes/Value) | [`ValueUnits`](../cardano-ledger-ts/type-aliases/ValueUnits) - The total value needed for outputs
+- `initialUTxOSet`: [`ITxBuildInput[]`](./buildSync#inputs) - Available UTxOs to select from
+- `minimumLovelaceRequired`: `number | bigint` - Minimum ADA required (defaults to 5 ADA)
+
+## Returns
+
+Returns an array of [`ITxBuildInput`](./buildSync#inputs) containing the selected inputs that cover the requested output value.
+
+## Info
+
+This method implements a coin selection algorithm that:
+1. Analyzes the requested output value (both ADA and native tokens)
+2. Scans the available UTxO set
+3. Selects the minimum set of inputs that:
+   - Cover all requested assets
+   - Meet the minimum ADA requirement
+   - Minimize the number of inputs used
+   - Optimize for transaction size and fees
+
+This is particularly useful when building transactions to:
+- Minimize input selection and therefore transaction fees
+- Ensure sufficient inputs are selected for all assets
+- Avoid selecting unnecessary inputs that would increase fees

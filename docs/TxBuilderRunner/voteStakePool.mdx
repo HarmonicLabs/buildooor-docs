@@ -1,0 +1,24 @@
+---
+title: voteStakePool
+sidebar_position: 36
+---
+
+# `voteStakePool`
+
+```ts
+readonly voteStakePool!: (
+    poolId: CanBeHash28,
+    governanceActionId: ITxOutRef | TxOutRefStr,
+    vote: Vote,
+    anchor?: IAnchor | undefined
+) => TxBuilderRunner
+```
+
+- `poolId`: [`CanBeHash28`](../cardano-ledger-ts/type-aliases/CanBeHash28) - The pool ID (hash) of the stake pool
+- `governanceActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) - The ID of the governance action being voted on
+- `vote`: [`Vote`](../cardano-ledger-ts/type-aliases/Vote) - The vote (yes/no/abstain)
+- `anchor`: [`IAnchor`](../cardano-ledger-ts/interfaces/IAnchor) | `undefined` - Optional anchor data
+
+Submits a vote on a governance action using a stake pool's ID. This method is specifically for Stake Pool Operators (SPOs) to cast their votes.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

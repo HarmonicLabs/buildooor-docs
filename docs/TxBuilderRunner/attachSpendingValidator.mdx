@@ -1,0 +1,29 @@
+---
+title: attachSpendingValidator
+sidebar_position: 9
+---
+
+# `attachSpendingValidator`
+
+```ts
+attachSpendingValidator(
+    validator: Script<PlutusScriptType>
+): TxBuilderRunner
+```
+
+Alias for [`attachValidator`](./attachValidator). This method is provided for semantic clarity when specifically attaching spending validators.
+
+## Parameters
+
+- `validator`: The Plutus script to be attached as a spending validator
+
+## Returns
+
+Returns a reference to the same `TxBuilderRunner` instance for method chaining.
+
+## See Also
+
+- [`attachValidator`](./attachValidator) - The base method this aliases
+- [`attachCertificateValidator`](./attachCertificateValidator)
+- [`attachMintingValidator`](./attachMintingValidator)
+- [`attachWithdrawalValidator`](./attachWithdrawalValidator) 

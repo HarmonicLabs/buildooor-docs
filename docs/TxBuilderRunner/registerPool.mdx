@@ -1,0 +1,27 @@
+---
+title: registerPool
+sidebar_position: 20
+---
+
+# `registerPool`
+
+```ts
+readonly registerPool!: (
+    params: IPoolParams
+) => TxBuilderRunner
+```
+
+- `params`: [`IPoolParams`](../cardano-ledger-ts/interfaces/IPoolParams)
+
+Registers a stake pool on the Cardano network using the provided pool parameters.
+
+The pool parameters include all necessary information to register a new stake pool, such as:
+- Pool metadata
+- Pool owners
+- Pool margin
+- Pool cost
+- Pool pledge
+- Pool relays
+- Pool metadata URL
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

@@ -1,0 +1,28 @@
+---
+title: proposeHardForkInitiation
+sidebar_position: 38
+---
+
+# `proposeHardForkInitiation`
+
+```ts
+readonly proposeHardForkInitiation!: (
+    nextProtocolVersion: IProtocolVersion,
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    govActionId?: ITxOutRef | TxOutRefStr,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `nextProtocolVersion`: [`IProtocolVersion`](../cardano-ledger-ts/interfaces/IProtocolVersion) - The proposed new protocol version
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `govActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) | `undefined` - Optional reference to a previous governance action
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal to initiate a hard fork by upgrading to a new protocol version.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

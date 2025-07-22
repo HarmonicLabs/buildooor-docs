@@ -1,0 +1,20 @@
+---
+title: retirePool
+sidebar_position: 21
+---
+
+# `retirePool`
+
+```ts
+readonly retirePool!: (
+    poolId: CanBeHash28,
+    epoch: CanBeUInteger
+) => TxBuilderRunner
+```
+
+- `poolId`: [`CanBeHash28`](../cardano-ledger-ts/type-aliases/CanBeHash28) - The pool ID to retire
+- `epoch`: [`CanBeUInteger`](../utils/CanBeUInteger) - The epoch number when the pool should be retired
+
+Retires a stake pool from the Cardano network. The retirement will take effect at the specified epoch.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

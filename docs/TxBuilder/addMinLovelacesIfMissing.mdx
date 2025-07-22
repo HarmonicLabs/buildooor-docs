@@ -1,0 +1,29 @@
+---
+title: addMinLovelacesIfMissing
+sidebar_position: 7
+---
+
+# `addMinLovelacesIfMissing`
+
+```ts
+addMinLovelacesIfMissing(txOut: TxOut): TxOut
+```
+
+Ensures that a transaction output has at least the minimum required amount of Lovelaces based on the protocol parameters.
+
+## Parameters
+
+- `txOut`: [`TxOut`](../cardano-ledger-ts/classes/TxOut) - The transaction output to check and potentially modify
+
+## Returns
+
+Returns a new [`TxOut`](../cardano-ledger-ts/classes/TxOut) instance with at least the minimum required Lovelaces.
+
+## Info
+
+This method:
+1. Calculates the minimum required Lovelaces for the output using [`getMinimumOutputLovelaces`](./getMinimumOutputLovelaces)
+2. If the output has less than the minimum, creates a new output with the minimum amount
+3. If the output already has enough Lovelaces, returns it unchanged
+
+This is particularly important when creating outputs with native tokens or Plutus data, as these increase the minimum ADA requirement.

@@ -1,0 +1,32 @@
+---
+title: proposeComitteeUpdate
+sidebar_position: 41
+---
+
+# `proposeComitteeUpdate`
+
+```ts
+readonly proposeComitteeUpdate!: (
+    toRemove: Credential[],
+    toAdd: INewCommitteeEntry[],
+    threshold: Rational,
+    procedureInfos: Omit<IProposalProcedure, "govAction">,
+    govActionId?: ITxOutRef | TxOutRefStr,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `toRemove`: [`Credential`](../cardano-ledger-ts/classes/Credential)[] - Array of credentials to remove from the committee
+- `toAdd`: [`INewCommitteeEntry`](../cardano-ledger-ts/interfaces/INewCommitteeEntry)[] - Array of new committee members to add
+- `threshold`: [`Rational`](../utils/Rational) - New quorum threshold for committee decisions
+- `procedureInfos`: `Omit<IProposalProcedure, "govAction">` (see [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure)) - The proposal procedure details (excluding the governance action)
+- `govActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) | `undefined` - Optional reference to a previous governance action
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a proposal to update the Constitutional Committee membership and voting threshold.
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

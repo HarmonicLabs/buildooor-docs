@@ -6,13 +6,21 @@ sidebar_position: 7
 # `slotToPOSIX`
 
 ```ts
-slotToPOSIX( slot: number | bigint ): number
+slotToPOSIX(slot: number | bigint): number
 ```
 
-- `slot`: `number` | `bigint`
+Converts a slot number to the equivalent POSIX timestamp based on the configured genesis information.
 
-given a slot number returns the equivalent POSIX time based on the [`GenesisInfos`](../miscellaneous/GenesisInfos)
+## Parameters
 
-if no genesis infos are set the method throws an `Error`;
+- `slot`: `number | bigint` - The slot number to convert to a POSIX timestamp
 
-you can set the genesis infos using the [`setGenesisInfos`](./setGenesisInfos) method.
+## Returns
+
+`number` - The corresponding POSIX timestamp for the given slot number
+
+## Info
+
+This method requires [`GenesisInfos`](../miscellaneous/GenesisInfos) to be configured. If no genesis infos are set, the method throws an `Error`.
+
+You can set the genesis infos using the [`setGenesisInfos`](./setGenesisInfos) method before calling this function.

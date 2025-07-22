@@ -1,0 +1,28 @@
+---
+title: propose
+sidebar_position: 31
+---
+
+# `propose`
+
+```ts
+readonly propose!: (
+    proposal: IProposalProcedure,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `proposal`: [`IProposalProcedure`](../cardano-ledger-ts/interfaces/IProposalProcedure) - The proposal procedure details
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script proposers
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a governance proposal to the network. The proposal procedure includes all necessary information about the proposal, such as:
+- The governance action
+- The deposit amount
+- The return address for the deposit
+- Any additional metadata
+
+If the proposer is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

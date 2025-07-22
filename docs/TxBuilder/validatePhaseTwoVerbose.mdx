@@ -1,0 +1,41 @@
+---
+title: validatePhaseTwoVerbose
+sidebar_position: 14
+---
+
+# `validatePhaseTwoVerbose`
+
+```ts
+validatePhaseTwoVerbose(tx: Tx): {
+    result: CEKValue;
+    budgetSpent: ExBudget;
+    logs: string[];
+    rdmr: TxRedeemer;
+    isV2OrLess: boolean;
+}[]
+```
+
+Performs detailed Phase-2 validation of Plutus scripts in a transaction, providing comprehensive execution results.
+
+## Parameters
+
+- `tx`: [`Tx`](../cardano-ledger-ts/classes/Tx) - The transaction to validate
+
+## Returns
+
+Returns an array of validation results, one for each script execution. Each result contains:
+- `result`: [`CEKValue`](../cardano-ledger-ts/classes/CEKValue) - The final value returned by the script
+- `budgetSpent`: [`ExBudget`](../cardano-ledger-ts/classes/ExBudget) - The execution resources consumed
+- `logs`: `string[]` - Execution logs for debugging
+- `rdmr`: [`TxRedeemer`](../cardano-ledger-ts/classes/TxRedeemer) - The redeemer used in the execution
+- `isV2OrLess`: `boolean` - Whether the script is Plutus V2 or earlier
+
+## Info
+
+This method is particularly useful for:
+- Debugging script failures
+- Analyzing script performance
+- Understanding resource usage
+- Validating script behavior before submitting to the network
+
+For simple validation without detailed results, use [`validatePhaseTwo`](./validatePhaseTwo) instead.

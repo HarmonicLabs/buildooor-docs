@@ -1,0 +1,31 @@
+---
+title: findCollaterals
+sidebar_position: 18
+---
+
+# `findCollaterals`
+
+```ts
+findCollaterals(utxos: UTxO[], targetCollateralLovelaces?: number | bigint): UTxO[]
+```
+
+Finds suitable UTxOs to use as collateral for transactions involving Plutus scripts.
+
+## Parameters
+
+- `utxos`: [`UTxO[]`](../cardano-ledger-ts/classes/UTxO) - Array of UTxOs to search through
+- `targetCollateralLovelaces`: `number | bigint` - Optional target amount of Lovelaces for collateral
+
+## Returns
+
+Returns an array of [`UTxO`](../cardano-ledger-ts/classes/UTxO) instances that can be used as collateral.
+
+## Info
+
+This method finds UTxOs that:
+1. Contain only ADA (no native tokens)
+2. Have no datum hash
+3. Have sufficient Lovelaces to meet the target amount
+4. Are not locked by scripts
+
+Collateral is required for transactions that include Plutus scripts. If script validation fails, the collateral is taken as a fee to compensate nodes for the execution costs. The method tries to find the minimum number of UTxOs that satisfy the target amount while meeting all collateral requirements.

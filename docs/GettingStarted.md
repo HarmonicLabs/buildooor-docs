@@ -38,12 +38,14 @@ transactions.
 Once you have your wallet, fund it from the Testnet Faucet -Link-, or send some test ADA from your wallet.
 
 > NOTE:
-> If you ar sending from your wallet, make sure you switch your wallet network to Pre-Prod.
+> If you are sending from your wallet, make sure you switch your wallet network to Pre-Prod.
 > DO NOT send ADA on the Mainnet network.
 
 Then we can start building and testing transactions.
 
-[Simple Transaction](/docs/examples/simple-transaction)
+[Simple Transaction TxBuilder](/docs/examples/TxBuilder/simple-transaction)
+
+[Simple Transaction TxBuilderRunner](/docs/examples/TxBuilderRunner/simple-transaction)
 
 ---
 
@@ -63,7 +65,9 @@ Now we can compile validators easily, we can take a lok at minting assets on Car
 
 For simple minting we will mint some tokens with a minting validator:
 
-[Simple Minting](/docs/examples/simple-minting)
+[Simple Minting TxBuilder](/docs/examples/TxBuilder/simple-minting)
+
+[Simple Minting TxBuilderRunner](/docs/examples/TxBuilderRunner/simple-minting)
 
 ---
 
@@ -73,7 +77,9 @@ Our previous minting validator didnt have any parameters.
 
 To look at sending assets, we will also take a first-look at applying parameters with our `makeValidator()` function.
 
-[Sending Assets](/docs/examples/sending-assets)
+[Sending Assets TxBuilder](/docs/examples/TxBuilder/sending-assets)
+
+[Sending Assets TxBuilderRunner](/docs/examples/TxBuilderRunner/sending-assets)
 
 ---
 
@@ -81,7 +87,9 @@ To look at sending assets, we will also take a first-look at applying parameters
 
 Our final validator example will take a look at other parameters, in this case it will be using the common `oneshot` design pattern.
 
-[One Shot](/docs/examples/one-shot-minting)
+[One Shot TxBuilder](/docs/examples/TxBuilder/one-shot-minting)
+
+[One Shot TxBuilderRunner](/docs/examples/TxBuilderRunner/one-shot-minting)
 
 ---
 
@@ -89,4 +97,4 @@ Our final validator example will take a look at other parameters, in this case i
 
 For the last example we will look at transaction chaining, we will reuse the oneshot validator and build a few sequential transactions that use the token.
 
-[Transaction Chaining](/docs/examples/transaction-chaining)
+[Transaction Chaining](/docs/examples/TxBuilder/transaction-chaining)

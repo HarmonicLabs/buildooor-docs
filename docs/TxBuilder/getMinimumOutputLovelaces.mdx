@@ -6,9 +6,27 @@ sidebar_position: 5
 # `getMinimumOutputLovelaces`
 
 ```ts
-getMinimumOutputLovelaces( tx_out: TxOut ): bigint
+getMinimumOutputLovelaces(tx_out: TxOut | CanBeCborString): bigint
 ```
 
-- `tx_out`: [`TxOut`](../cardano-ledger-ts/classes/TxOut)
+Calculates the minimum required Lovelaces for a transaction output based on its size and the protocol parameters.
 
-given a transaction output, calculates the minUtxo based on the size and the protocol parameters.
+## Parameters
+
+- `tx_out`: [`TxOut`](../cardano-ledger-ts/classes/TxOut) | `CanBeCborString` - The transaction output to calculate minimum Lovelaces for
+
+## Returns
+
+Returns a `bigint` representing the minimum amount of Lovelaces required for the output.
+
+## Info
+
+This method calculates the minimum UTxO requirement by considering:
+1. The base UTxO size requirement from protocol parameters
+2. Additional size requirements for:
+   - Native tokens in the output
+   - Datum hash or inline datum
+   - Reference scripts
+   - Output address type
+
+The calculation ensures the output meets the network's minimum UTxO requirements, which helps prevent dust UTxOs and maintains network efficiency.

@@ -1,0 +1,31 @@
+---
+title: validatePhaseTwo
+sidebar_position: 15
+---
+
+# `validatePhaseTwo`
+
+```ts
+validatePhaseTwo(tx: Tx): boolean
+```
+
+Performs Phase-2 validation of all Plutus scripts in a transaction.
+
+## Parameters
+
+- `tx`: [`Tx`](../cardano-ledger-ts/classes/Tx) - The transaction to validate
+
+## Returns
+
+Returns `true` if all scripts validate successfully, `false` otherwise.
+
+## Info
+
+This method:
+1. Executes all Plutus scripts in the transaction
+2. Verifies that each script returns successfully
+3. Checks that execution stays within budget limits
+
+For detailed execution results and debugging information, use [`validatePhaseTwoVerbose`](./validatePhaseTwoVerbose) instead.
+
+Phase-2 validation is a critical step in transaction processing that ensures all smart contracts execute correctly and within their resource limits.

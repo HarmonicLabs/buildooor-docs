@@ -1,0 +1,30 @@
+---
+title: voteScriptConstitutionalComittee
+sidebar_position: 35
+---
+
+# `voteScriptConstitutionalComittee`
+
+```ts
+readonly voteScriptConstitutionalComittee!: (
+    memberScriptHash: CanBeHash28,
+    governanceActionId: ITxOutRef | TxOutRefStr,
+    vote: Vote,
+    anchor?: IAnchor | undefined,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `memberScriptHash`: [`CanBeHash28`](../cardano-ledger-ts/type-aliases/CanBeHash28) - The script hash of the Constitutional Committee member
+- `governanceActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) - The ID of the governance action being voted on
+- `vote`: [`Vote`](../cardano-ledger-ts/type-aliases/Vote) - The vote (yes/no/abstain)
+- `anchor`: [`IAnchor`](../cardano-ledger-ts/interfaces/IAnchor) | `undefined` - Optional anchor data
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for the script
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a vote on a governance action using a Constitutional Committee member's script hash. This method is specifically for Constitutional Committee members that use a script-based credential.
+
+The appropriate redeemer and script (or reference script) must be provided to validate the voting action.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

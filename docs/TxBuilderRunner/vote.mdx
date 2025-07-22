@@ -1,0 +1,30 @@
+---
+title: vote
+sidebar_position: 30
+---
+
+# `vote`
+
+```ts
+readonly vote!: (
+    voter: IVoter,
+    governanceActionId: ITxOutRef | TxOutRefStr,
+    vote: Vote,
+    anchor?: IAnchor | undefined,
+    redeemer?: CanBeData,
+    script_or_ref?: Script<PlutusScriptType> | CanResolveToUTxO
+) => TxBuilderRunner
+```
+
+- `voter`: [`IVoter`](../cardano-ledger-ts/interfaces/IVoter) - The voter information
+- `governanceActionId`: [`ITxOutRef`](../cardano-ledger-ts/interfaces/ITxOutRef) | [`TxOutRefStr`](../cardano-ledger-ts/type-aliases/TxOutRefStr) - The ID of the governance action being voted on
+- `vote`: [`Vote`](../cardano-ledger-ts/type-aliases/Vote) - The vote (yes/no/abstain)
+- `anchor`: [`IAnchor`](../cardano-ledger-ts/interfaces/IAnchor) | `undefined` - Optional anchor data
+- `redeemer`: [`CanBeData`](../miscellaneous/CanBeData) | `undefined` - Optional redeemer for script voters
+- `script_or_ref`: [`Script<PlutusScriptType>`](../cardano-ledger-ts/classes/Script) | [`CanResolveToUTxO`](../miscellaneous/CanResolveToUTxO) | `undefined` - Optional script or reference input
+
+Submits a vote on a governance action. This can be used by any type of voter (DRep, CC member, SPO) to cast their vote.
+
+If the voter is using a script, the appropriate redeemer and script (or reference script) must be provided.
+
+returns a reference to the same [`TxBuilderRunner`](./TxBuilderRunner). 

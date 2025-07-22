@@ -1,0 +1,29 @@
+---
+title: minimizeLovelaces
+sidebar_position: 8
+---
+
+# `minimizeLovelaces`
+
+```ts
+minimizeLovelaces(out: ITxOut): TxOut
+```
+
+Creates a new transaction output with the minimum required amount of Lovelaces based on the protocol parameters.
+
+## Parameters
+
+- `out`: [`ITxOut`](../cardano-ledger-ts/interfaces/ITxOut) - The transaction output interface to use as a template
+
+## Returns
+
+Returns a new [`TxOut`](../cardano-ledger-ts/classes/TxOut) instance with exactly the minimum required Lovelaces.
+
+## Info
+
+This method differs from [`addMinLovelacesIfMissing`](./addMinLovelacesIfMissing) in that it:
+1. Always creates a new output
+2. Sets the Lovelaces to exactly the minimum required amount
+3. Preserves all other output properties (assets, datum, etc.)
+
+This is useful when you want to ensure an output uses the absolute minimum ADA required by the protocol, which helps optimize ADA usage in complex transactions.

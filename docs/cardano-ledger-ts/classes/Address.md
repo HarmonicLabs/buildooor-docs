@@ -17,17 +17,13 @@ shelley specification in cardano-ledger; page 113
 
 ### new Address()
 
-> **new Address**(`network`, `paymentCreds`, `stakeCreds`?, `type`?): [`Address`](Address.md)
+> **new Address**(`address`, `cborRef?`): [`Address`](Address.md)
 
 #### Parameters
 
-• **network**: [`NetworkT`](../type-aliases/NetworkT.md)
+• **address**: [`IAddress`](../interfaces/IAddress.md)
 
-• **paymentCreds**: [`Credential`](Credential.md)\<[`CredentialType`](../enumerations/CredentialType.md)\>
-
-• **stakeCreds?**: [`StakeCredentials`](StakeCredentials.md)\<[`StakeCredentialsType`](../type-aliases/StakeCredentialsType.md)\>
-
-• **type?**: [`AddressType`](../type-aliases/AddressType.md)
+• **cborRef?**: `SubCborRef`
 
 #### Returns
 
@@ -38,6 +34,16 @@ shelley specification in cardano-ledger; page 113
 [src/ledger/Address.ts:75](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L75)
 
 ## Properties
+
+### cborRef
+
+> `readonly` **cborRef**: `SubCborRef` | `undefined`
+
+#### Defined in
+
+[src/ledger/Address.ts:41](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L41)
+
+***
 
 ### network
 
@@ -77,20 +83,6 @@ shelley specification in cardano-ledger; page 113
 
 [src/ledger/Address.ts:45](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L45)
 
-## Accessors
-
-### fake
-
-> `get` `static` **fake**(): [`Address`](Address.md)
-
-#### Returns
-
-[`Address`](Address.md)
-
-#### Defined in
-
-[src/ledger/Address.ts:132](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L132)
-
 ## Methods
 
 ### clone()
@@ -107,17 +99,25 @@ shelley specification in cardano-ledger; page 113
 
 ***
 
-### toBuffer()
+### toData()
 
-> **toBuffer**(): `Uint8Array`
+> **toData**(`version?`: `ToDataVersion`): `Data`
+
+#### Parameters
+
+• **version?**: `ToDataVersion`
 
 #### Returns
 
-`Uint8Array`
+`Data`
+
+#### Implementation of
+
+`ToData.toData`
 
 #### Defined in
 
-[src/ledger/Address.ts:269](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L269)
+[src/ledger/Address.ts:140](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L140)
 
 ***
 
@@ -135,21 +135,17 @@ shelley specification in cardano-ledger; page 113
 
 ***
 
-### toCbor()
+### toBuffer()
 
-> **toCbor**(): `CborString`
+> **toBuffer**(): `Uint8Array`
 
 #### Returns
 
-`CborString`
-
-#### Implementation of
-
-`ToCbor.toCbor`
+`Uint8Array`
 
 #### Defined in
 
-[src/ledger/Address.ts:337](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L337)
+[src/ledger/Address.ts:269](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L269)
 
 ***
 
@@ -171,47 +167,45 @@ shelley specification in cardano-ledger; page 113
 
 ***
 
-### toData()
+### toCborBytes()
 
-> **toData**(): `Data`
+> **toCborBytes**(): `Uint8Array`
 
 #### Returns
 
-`Data`
-
-#### Implementation of
-
-`ToData.toData`
+`Uint8Array`
 
 #### Defined in
 
-[src/ledger/Address.ts:140](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L140)
+[src/ledger/Address.ts:334](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L334)
 
 ***
 
-### toJson()
+### toCbor()
 
-> **toJson**(): \`addr1$\{string\}\` \| \`addr\_test1$\{string\}\`
+> **toCbor**(): `CborString`
 
 #### Returns
 
-\`addr1$\{string\}\` \| \`addr\_test1$\{string\}\`
+`CborString`
+
+#### Implementation of
+
+`ToCbor.toCbor`
 
 #### Defined in
 
-[src/ledger/Address.ts:384](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L384)
+[src/ledger/Address.ts:337](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L337)
 
 ***
 
 ### toString()
 
-> **toString**(): \`addr1$\{string\}\` \| \`addr\_test1$\{string\}\`
-
-Returns a string representation of an object.
+> **toString**(): `AddressStr`
 
 #### Returns
 
-\`addr1$\{string\}\` \| \`addr\_test1$\{string\}\`
+`AddressStr`
 
 #### Defined in
 
@@ -219,13 +213,43 @@ Returns a string representation of an object.
 
 ***
 
-### fromBuffer()
+### toJSON()
 
-> `static` **fromBuffer**(`buff`): [`Address`](Address.md)
+> **toJSON**(): `AddressStr`
+
+#### Returns
+
+`AddressStr`
+
+#### Defined in
+
+[src/ledger/Address.ts:379](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L379)
+
+***
+
+### toJson()
+
+> **toJson**(): `AddressStr`
+
+#### Returns
+
+`AddressStr`
+
+#### Defined in
+
+[src/ledger/Address.ts:384](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L384)
+
+***
+
+### fromData()
+
+> `static` **fromData**(`data`, `network?`): [`Address`](Address.md)
 
 #### Parameters
 
-• **buff**: `string` \| `Uint8Array`
+• **data**: `Data`
+
+• **network?**: [`NetworkT`](../type-aliases/NetworkT.md)
 
 #### Returns
 
@@ -233,17 +257,19 @@ Returns a string representation of an object.
 
 #### Defined in
 
-[src/ledger/Address.ts:274](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L274)
+[src/ledger/Address.ts:145](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L145)
 
 ***
 
 ### fromBytes()
 
-> `static` **fromBytes**(`bs`): [`Address`](Address.md)
+> `static` **fromBytes**(`bs`, `cborRef?`): [`Address`](Address.md)
 
 #### Parameters
 
 • **bs**: `string` \| `Uint8Array` \| `byte`[]
+
+• **cborRef?**: `SubCborRef`
 
 #### Returns
 
@@ -255,13 +281,15 @@ Returns a string representation of an object.
 
 ***
 
-### fromCbor()
+### fromBuffer()
 
-> `static` **fromCbor**(`cbor`): [`Address`](Address.md)
+> `static` **fromBuffer**(`buff`, `cborRef?`): [`Address`](Address.md)
 
 #### Parameters
 
-• **cbor**: `CanBeCborString`
+• **buff**: `string` \| `Uint8Array`
+
+• **cborRef?**: `SubCborRef`
 
 #### Returns
 
@@ -269,7 +297,67 @@ Returns a string representation of an object.
 
 #### Defined in
 
-[src/ledger/Address.ts:342](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L342)
+[src/ledger/Address.ts:274](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L274)
+
+***
+
+### fromXPrv()
+
+> `static` **fromXPrv**(`xprv`, `network?`, `AccountIndex?`, `AddressIndex?`): [`Address`](Address.md)
+
+gets the standard address for single address wallets
+
+payment key at path "m/1852'/1815'/0'/0/0"
+stake key at path   "m/1852'/1815'/0'/2/0"
+
+#### Parameters
+
+• **xprv**: `XPrv`
+
+• **network?**: [`NetworkT`](../type-aliases/NetworkT.md)
+
+• **AccountIndex?**: `number`
+
+• **AddressIndex?**: `number`
+
+#### Returns
+
+[`Address`](Address.md)
+
+#### Defined in
+
+[src/ledger/Address.ts:289](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L289)
+
+***
+
+### fromEntropy()
+
+> `static` **fromEntropy**(`entropy`, `network?`, `AccountIndex?`, `AddressIndex?`): [`Address`](Address.md)
+
+generates an `XPrv` from entropy and calls `Addres.fromXPrv`
+
+gets the standard address for single address wallets
+
+payment key at path "m/1852'/1815'/0'/0/0"
+stake key at path   "m/1852'/1815'/0'/2/0"
+
+#### Parameters
+
+• **entropy**: `string` \| `Uint8Array`
+
+• **network?**: [`NetworkT`](../type-aliases/NetworkT.md)
+
+• **AccountIndex?**: `number`
+
+• **AddressIndex?**: `number`
+
+#### Returns
+
+[`Address`](Address.md)
+
+#### Defined in
+
+[src/ledger/Address.ts:319](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L319)
 
 ***
 
@@ -291,22 +379,13 @@ Returns a string representation of an object.
 
 ***
 
-### fromEntropy()
+### fromCbor()
 
-> `static` **fromEntropy**(`entropy`, `network`): [`Address`](Address.md)
-
-generates an `XPrv` from entropy and calls `Addres.fromXPrv`
-
-gets the standard address for single address wallets
-
-payment key at path "m/1852'/1815'/0'/0/0"
-stake key at path   "m/1852'/1815'/0'/2/0"
+> `static` **fromCbor**(`cbor`): [`Address`](Address.md)
 
 #### Parameters
 
-• **entropy**: `string` \| `Uint8Array`
-
-• **network**: [`NetworkT`](../type-aliases/NetworkT.md) = `"mainnet"`
+• **cbor**: `CanBeCborString`
 
 #### Returns
 
@@ -314,7 +393,7 @@ stake key at path   "m/1852'/1815'/0'/2/0"
 
 #### Defined in
 
-[src/ledger/Address.ts:319](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L319)
+[src/ledger/Address.ts:342](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L342)
 
 ***
 
@@ -336,34 +415,9 @@ stake key at path   "m/1852'/1815'/0'/2/0"
 
 ***
 
-### fromXPrv()
-
-> `static` **fromXPrv**(`xprv`, `network`): [`Address`](Address.md)
-
-gets the standard address for single address wallets
-
-payment key at path "m/1852'/1815'/0'/0/0"
-stake key at path   "m/1852'/1815'/0'/2/0"
-
-#### Parameters
-
-• **xprv**: `XPrv`
-
-• **network**: [`NetworkT`](../type-aliases/NetworkT.md) = `"mainnet"`
-
-#### Returns
-
-[`Address`](Address.md)
-
-#### Defined in
-
-[src/ledger/Address.ts:289](https://github.com/HarmonicLabs/cardano-ledger-ts/blob/94dd590ffe94133126b0d8d49920fc7b002e1975/src/ledger/Address.ts#L289)
-
-***
-
 ### mainnet()
 
-> `static` **mainnet**(`paymentCreds`, `stakeCreds`?, `type`?): [`Address`](Address.md)
+> `static` **mainnet**(`paymentCreds`, `stakeCreds?`, `type?`): [`Address`](Address.md)
 
 #### Parameters
 
@@ -385,7 +439,7 @@ stake key at path   "m/1852'/1815'/0'/2/0"
 
 ### testnet()
 
-> `static` **testnet**(`paymentCreds`, `stakeCreds`?, `type`?): [`Address`](Address.md)
+> `static` **testnet**(`paymentCreds`, `stakeCreds?`, `type?`): [`Address`](Address.md)
 
 #### Parameters
 
